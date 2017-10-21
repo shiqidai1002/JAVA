@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;WQUPC.java&apos; to &apos;ShiqiDai_Assignment2UnionFind/src&apos;&#x0D;&#x0A;- Original project: &apos;Alogrithms&apos;&#x0D;&#x0A;- Destination element: &apos;ShiqiDai_Assignment2UnionFind/src&apos;&#x0D;&#x0A;- Original element: &apos;WQUPC.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="=ShiqiDai_Assignment2UnionFind/src" element1="/src&lt;{WQUPC.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1507401765019" units="1" version="1.0"/>
+</session>

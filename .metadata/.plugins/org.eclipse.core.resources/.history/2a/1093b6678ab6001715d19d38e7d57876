@@ -1,0 +1,17 @@
+
+public class FleetIO {
+
+	
+	public AircraftFleet load(AircraftFleet a , String fileName){
+		return a;
+		
+	}
+	
+	public void save(AircraftFleet a , String fileName){
+		
+	}
+	
+	private void save(Aircraft ac){
+		
+	}
+}

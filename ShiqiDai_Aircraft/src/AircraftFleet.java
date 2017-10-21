@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class AircraftFleet {
+	protected ArrayList<Aircraft> fleet = new ArrayList<Aircraft>();
+	private HashMap<String, Aircraft> hm = new HashMap<String, Aircraft>();
+
+	public AircraftFleet() {
+
+	}
+
+	public void add(Aircraft a) {
+		fleet.add(a);
+		hm.put(a.ID, a);
+	}
+
+	public void remove(Aircraft a) {
+		fleet.remove(a);
+		hm.remove(a.ID);
+	}
+	
+	public String displayAllAircrafts(){
+		String s = "";
+		for (Aircraft i : fleet){
+			s = s + i.toString() + "\n";
+		}
+		return s;
+	}
+
+	public Aircraft getByID(String ID) {
+		return hm.get(ID);
+	}
+	
+}

@@ -1,0 +1,32 @@
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * Aircraft Test Program Class
+ * 
+ * @author SHIQI DAI NUID: 001819581
+ *
+ */
+public class AircraftTest {
+	public static void main(String[] args) {
+		run();
+	}
+	
+	private static void run(){
+		AircraftFleet fleet = new AircraftFleet();
+		System.out.println("Our Aircraft test program is beginning");
+		System.out.println("");
+		System.out.println("");
+		fleet.add(new Aircraft("N1762J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
+		fleet.add(new Aircraft("N1763J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
+		fleet.add(new Aircraft("N1764J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
+		fleet.add(new Aircraft("N1765J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
+		fleet.add(new Aircraft("N1766J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
+		fleet.add(new Aircraft("N1767J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
+		System.out.println(fleet.displayAllAircrafts());
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Our Aircraft test program is ending");
+	}
+
+}

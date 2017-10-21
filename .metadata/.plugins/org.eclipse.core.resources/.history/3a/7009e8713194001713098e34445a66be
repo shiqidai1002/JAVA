@@ -1,0 +1,32 @@
+package newton;
+
+import java.util.function.DoubleFunction; 
+	public class Newton { 
+		public static void main(String[] args){ 
+			// Newton's Approximation to solve cos(x) = x         
+			newton("x^2 = 0", 
+					1.0, 
+					200, 
+					(double x ) -> x * x , 
+					(double x ) -> 2 * x );     	
+			} 
+		private static void newton(
+				final String equation, 
+				final double x0, 	
+				final int maxTries, 
+				final DoubleFunction<Double> f, 
+				final DoubleFunction<Double> dfbydx) 
+		 {double x = x0; 
+		 int tries = maxTries; 
+		 for (;tries > 0; tries--) 
+		 { final double y = f.apply(x); 
+		 if (Math.abs(y) < 1E-7) 
+		 {
+			 System.out.println("The solution to "+equation+" is: " + x);                 
+			 System.exit(0);             
+			 }             
+		 x = x - y / dfbydx.apply(x);         
+		 }     
+		 } 
+		}
+	

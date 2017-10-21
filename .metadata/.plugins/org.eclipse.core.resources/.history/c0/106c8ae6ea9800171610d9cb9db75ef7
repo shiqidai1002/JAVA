@@ -1,0 +1,18 @@
+package exercise;
+
+public class Test {
+	public static void main(String[] args){
+		int[] array = { 0, 1, 2, 3, 4, 5 };
+		int[] array2 = array;
+
+		System.out.println(array);
+		System.out.println(array2);
+	}
+	
+	  /*public static void main(String[] args) {
+		  	String chicken = "chicken";
+		    Pair p = new Pair(0, 0.0);
+		    System.out.println(p.equals(chicken));
+		  }*/
+
+}

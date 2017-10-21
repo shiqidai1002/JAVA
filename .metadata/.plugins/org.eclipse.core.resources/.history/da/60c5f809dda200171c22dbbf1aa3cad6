@@ -1,0 +1,9 @@
+package helloWorld;
+
+public class helloWorld {
+	public static void main ( String[] args ){
+		double cost = 1.05;
+		cost = 31 * cost;
+		System.out.println(cost);
+	}
+}

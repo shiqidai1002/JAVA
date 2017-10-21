@@ -1,0 +1,43 @@
+package exercise;
+
+public class LinkedList {
+	  private int data;
+	  private LinkedList next;
+		
+	  public LinkedList(int data, LinkedList next) {
+	  	this.data = data;
+	    this.next = next;
+	  }
+	  
+	  public int getData() {
+	  	return data;
+	  }
+		
+	  public void setData(int data) {
+	  	this.data = data;
+	  }
+
+		public LinkedList getNext() {
+	  	return next;
+	  }
+		
+	  public void setNext(LinkedList next) {
+	  	this.next = next;
+	  }
+	  
+	  public String toString() {
+	  	String s = "" + this.getData() + this.getNext().toString();
+	    return s;
+	  }
+	  
+	  public static void main(String[] args) {
+	  	LinkedList h = new LinkedList(1, hhhhh);
+	    LinkedList hh = new LinkedList(2, h);
+	    LinkedList hhh = new LinkedList(3, hh);
+	    LinkedList hhhh = new LinkedList(4, hhh);
+	    LinkedList hhhhh = new LinkedList(5, hhhh);
+	    
+	    System.out.println(hhhhh.toString());
+	  }
+}
+	  

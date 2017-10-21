@@ -1,0 +1,91 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class FleetIO {
+	private static BufferedWriter bw;
+	private static BufferedReader br;
+
+	/**
+	 * passing in a AircraftFleet and a filename as parameters
+	 * 
+	 * @param a
+	 * @param fileName
+	 * @author Shiqi
+	 * 
+	 */
+	public static AircraftFleet load(String fileName) {
+		AircraftFleet a = null;
+		Aircraft ac;
+		String line;
+		String[] sl = new String[30];
+		try {
+			br = new BufferedReader(new FileReader(fileName));
+			br.readLine();
+			do {
+				String ID = br.readLine().split("=")[1];
+				String make = br.readLine().split("=")[1];
+				String model = br.readLine().split("=")[1];
+				double fuelCap = Double.parseDouble(br.readLine().split("=")[1]);
+				double weight = Double.parseDouble(br.readLine().split("=")[1]);
+				double cargoWeight = Double.parseDouble(br.readLine().split("=")[1]);
+				double maxTakeoffWeight = Double.parseDouble(br.readLine().split("=")[1]);
+				double cruiseSpeed = Double.parseDouble(br.readLine().split("=")[1]);
+				double fuelFlowRate = Double.parseDouble(br.readLine().split("=")[1]);
+				double range = Double.parseDouble(br.readLine().split("=")[1]);
+				int crewNum = Integer.parseInt(br.readLine().split("=")[1]);
+				int payload = Integer.parseInt(br.readLine().split("=")[1]);
+			} while (true);
+			ac = new Aircraft(ID,make,model,fuelCap,weight,cargoWeight,maxTakeoffWeight,cruiseSpeed,)
+		} catch (IOException e) {
+			System.err.println("IO ERROR received: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		// add(what you got);
+		return a;
+
+	}
+
+	/**
+	 * 
+	 * writing an AircraftFleet to a file
+	 * 
+	 * @param a
+	 * @param fileName
+	 * @author Shiqi
+	 * 
+	 */
+	public static void save(AircraftFleet a, String fileName) {
+		for (Aircraft ac : a.fleet) {
+			save(ac, fileName);
+		}
+	}
+
+	/**
+	 * writing a single aircraft to an open file
+	 * 
+	 * @param ac
+	 * @author Shiqi
+	 */
+	private static void save(Aircraft ac, String fileName) {
+		try {
+			bw = new BufferedWriter(new FileWriter(fileName, true));
+			bw.append(ac.toString().replace("\n", "\r\n"));
+			bw.newLine();
+			bw.close();
+		} catch (IOException e) {
+			System.err.println("IO ERROR received: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+}

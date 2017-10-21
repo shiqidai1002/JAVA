@@ -1,0 +1,48 @@
+import java.io.*;
+/**
+ * @author Shiqi
+ *
+ */
+public class FleetIO {
+
+	/**
+	 * passing in a AircraftFleet and a filename as parameters
+	 * @param a
+	 * @param fileName
+	 * @author Shiqi
+	 * 
+	 */
+	public AircraftFleet load(AircraftFleet a , String fileName){
+		return a;
+		
+	}
+	
+	/**
+	 * 
+	 * writing an AircraftFleet to a file
+	 * @param a
+	 * @param fileName
+	 * @author Shiqi
+	 * 
+	 */
+	public void save(AircraftFleet a , String fileName){
+		
+	}
+
+	/**
+	 * writing a single aircraft to an open file
+	 * @param ac
+	 * @author Shiqi
+	 */
+	private void save(Aircraft ac, String fileName){
+		FileWriter fw;
+		 try {
+		 fw = new FileWriter(fileName);
+		 fw.write("first line of text");
+		 fw.close();
+		 } catch(IOException ex) {
+		 System.err.println("IO ERROR received: " + ex.getMessage());
+		 ex.printStackTrace();
+		 }
+	}
+}
