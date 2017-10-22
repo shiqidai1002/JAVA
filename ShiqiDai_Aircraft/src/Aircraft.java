@@ -7,7 +7,7 @@
  */
 public class Aircraft {
 	//fields
-	String ID; // Todo Shiki ID SHOULD BE LOWERCASE BECAUSE IT'S NOT A FINAL VARIABLE
+	String id; 
 	String make;
 	String model;
 	double fuelCap; // Kilograms
@@ -30,10 +30,9 @@ public class Aircraft {
 	 * constructor 2
 	 * full 12 variables
 	 */
-	public Aircraft(String iD, String make, String model, double fuelCap, double weight, double cargoWeight,
+	public Aircraft(String id, String make, String model, double fuelCap, double weight, double cargoWeight,
 			double maxTakeoffWeight, double cruiseSpeed, double fuelFlowRate, double range, int crewNum, int payload) {
-		super();
-		ID = iD;
+		this.id = id;
 		this.make = make;
 		this.model = model;
 		this.fuelCap = fuelCap;
@@ -50,10 +49,9 @@ public class Aircraft {
 	/*
 	 * constructor 3
 	 */
-	public Aircraft(String iD, String make, String model, double fuelCap, double weight, double maxTakeoffWeight, double cruiseSpeed,
+	public Aircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight, double cruiseSpeed,
 			double fuelFlowRate, int crewNum, int payload) {
-		super();  // Todo Shiki You are not extending anything, why are you calling super()?
-		ID = iD;  // Todo Shiki iD makes no sense. do this.id = id instead
+		this.id = id; 
 		this.make = make;
 		this.model = model;
 		this.fuelCap = fuelCap;
@@ -111,18 +109,18 @@ public class Aircraft {
 	}
 
 	/**
-	 * @return the iD
+	 * @return the id
 	 */
 	public String getID() {
-		return ID;
+		return id;
 	}
 
 	/**
-	 * @param iD
-	 *            the iD to set
+	 * @param id
+	 *            the id to set
 	 */
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String id) {
+		id = id;
 	}
 
 	/**
@@ -265,11 +263,19 @@ public class Aircraft {
 	 */
 	@Override
 	public String toString() {
-		return "[Aircraft] \nID=" + ID + "\nmake=" + make + "\nmodel=" + model + "\nfuelCap=" + fuelCap + "\nweight="
-				+ weight + "\ncargoWeight=" + cargoWeight + "\nmaxTakeoffWeight=" + maxTakeoffWeight + "\ncruiseSpeed="
-				+ cruiseSpeed + "\nfuelFlowRate=" + fuelFlowRate + "\nrange=" + range + "\ncrewNum=" + crewNum
-				+ "\npayload=" + payload + "\n"; // Todo Shiki not a huge deal but you can separate these to be more
-		// human readable. So every time you have a \n, also move on to the next line in your code.
+		return "[Aircraft] "
+				+ "\nID=" + id 
+				+ "\nmake=" + make 
+				+ "\nmodel=" + model 
+				+ "\nfuelCap=" + fuelCap 
+				+ "\nweight=" + weight 
+				+ "\ncargoWeight=" + cargoWeight 
+				+ "\nmaxTakeoffWeight=" + maxTakeoffWeight 
+				+ "\ncruiseSpeed=" + cruiseSpeed 
+				+ "\nfuelFlowRate=" + fuelFlowRate 
+				+ "\nrange=" + range 
+				+ "\ncrewNum=" + crewNum
+				+ "\npayload=" + payload + "\n"; 
 	}
 
 }

@@ -27,9 +27,10 @@ public class FleetIO {
 		AircraftFleet a = new AircraftFleet();
 		Aircraft ac;
 		try {
-			br = new BufferedReader(new FileReader(fileName));			
-			while(br.readLine() != null) { // Todo Shiki similar to my comment in cargoplane, do we want to account for the fact that the toString of cargoplanes have a few extra lines?
-				String ID = br.readLine().split("=")[1]; // Todo Shiki lowercase id
+			br = new BufferedReader(new FileReader(fileName));	
+			String s = br.readLine();
+			while(s != null) { 
+				String id = br.readLine().split("=")[1]; // 
 				String make = br.readLine().split("=")[1];
 				String model = br.readLine().split("=")[1];
 				double fuelCap = Double.parseDouble(br.readLine().split("=")[1]);
@@ -41,20 +42,25 @@ public class FleetIO {
 				double range = Double.parseDouble(br.readLine().split("=")[1]);
 				int crewNum = Integer.parseInt(br.readLine().split("=")[1]);
 				int payload = Integer.parseInt(br.readLine().split("=")[1]);
-				ac = new Aircraft(ID, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
+				if(s == "CargoAircraft"){
+					double cargoArea = Double.parseDouble(br.readLine().split("=")[1]);
+					ac = new CargoAircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
+							fuelFlowRate, range, crewNum, payload, cargoArea);
+				}
+				ac = new Aircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
 						fuelFlowRate, range, crewNum, payload);
 				a.add(ac);
 				br.readLine();//skip the blank that divided different Aircraft in the file
 			} 
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace(); // Todo Shiki I'm pretty sure you're printing the stack trace twice like this, but I could be wrong
+			e.printStackTrace(); //TODO George our professor gave us this template. I am not sure if it's true as well.
 		}
 		return a;
 
 	}
 
-	 // Todo Shiki you have two methods called save, which is weird. You should be more specific with the naming of at least the second one.
+	 // TODO George This is what our professor asked.  I will post his instructions towards this assignment.
 	
 	/**
 	 * 
@@ -80,12 +86,12 @@ public class FleetIO {
 	private static void save(Aircraft ac, String fileName) {
 		try {
 			bw = new BufferedWriter(new FileWriter(fileName, true));
-			bw.append(ac.toString().replace("\n", "\r\n")); // Todo Shiki This certainly works but only for Windows. If possible, try usith System.getProperty("newline") or something instead of "\r\n"
+			bw.append(ac.toString().replace("\n", "\r\n")); // TODO George I remember my professor uses mac. However I don't know how to use System.getProperty("newline") or something instead of "\r\n".
 			bw.newLine();
 			bw.close();
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace(); // Todo Shiki I'm pretty sure you're printing the stack trace twice like this, but I could be wrong.
+			e.printStackTrace(); 
 		}
 	}
 }

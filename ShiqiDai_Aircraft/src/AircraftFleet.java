@@ -2,24 +2,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AircraftFleet {
-	protected ArrayList<Aircraft> fleet = new ArrayList<Aircraft>(); // Todo Shiki Why protected?
-	private HashMap<String, Aircraft> hm = new HashMap<String, Aircraft>(); // Todo Shiki name could be more descriptive. aircraftHashMap maybe?
+	protected ArrayList<Aircraft> fleet; 
+	private HashMap<String, Aircraft> fleetHm; 
 
 	public AircraftFleet() {
-		 // Todo Shiki this is the constructor. It would make more sense to initialize the arraylist and map in here rather than up above.
+		fleet = new ArrayList<Aircraft>();
+		fleetHm = new HashMap<String, Aircraft>();
 	}
+	
 
 	public void add(Aircraft a) {
 		fleet.add(a);
-		hm.put(a.ID, a);
+		fleetHm.put(a.id, a);
 	}
 
 	public void remove(Aircraft a) {
 		fleet.remove(a);
-		hm.remove(a.ID);
+		fleetHm.remove(a.id);
 	}
 	
-	 // Todo Shiki why do you have both a hashmap and an arraylist? Isn't just one hashmap good enough?
+	 
 	public String displayAllAircrafts(){
 		String s = "";
 		for (Aircraft i : fleet){
@@ -29,7 +31,7 @@ public class AircraftFleet {
 	}
 
 	public Aircraft getByID(String ID) {
-		return hm.get(ID);
+		return fleetHm.get(ID);
 	}
 	
 }
