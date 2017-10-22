@@ -7,7 +7,7 @@
  */
 public class Aircraft {
 	//fields
-	String ID;
+	String ID; // Todo Shiki ID SHOULD BE LOWERCASE BECAUSE IT'S NOT A FINAL VARIABLE
 	String make;
 	String model;
 	double fuelCap; // Kilograms
@@ -52,8 +52,8 @@ public class Aircraft {
 	 */
 	public Aircraft(String iD, String make, String model, double fuelCap, double weight, double maxTakeoffWeight, double cruiseSpeed,
 			double fuelFlowRate, int crewNum, int payload) {
-		super();
-		ID = iD;
+		super();  // Todo Shiki You are not extending anything, why are you calling super()?
+		ID = iD;  // Todo Shiki iD makes no sense. do this.id = id instead
 		this.make = make;
 		this.model = model;
 		this.fuelCap = fuelCap;
@@ -268,7 +268,8 @@ public class Aircraft {
 		return "[Aircraft] \nID=" + ID + "\nmake=" + make + "\nmodel=" + model + "\nfuelCap=" + fuelCap + "\nweight="
 				+ weight + "\ncargoWeight=" + cargoWeight + "\nmaxTakeoffWeight=" + maxTakeoffWeight + "\ncruiseSpeed="
 				+ cruiseSpeed + "\nfuelFlowRate=" + fuelFlowRate + "\nrange=" + range + "\ncrewNum=" + crewNum
-				+ "\npayload=" + payload + "\n";
+				+ "\npayload=" + payload + "\n"; // Todo Shiki not a huge deal but you can separate these to be more
+		// human readable. So every time you have a \n, also move on to the next line in your code.
 	}
 
 }
