@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.Reader; // Todo Shiki unused import statements?
 import java.io.Writer;
 
 /**
@@ -28,8 +28,8 @@ public class FleetIO {
 		Aircraft ac;
 		try {
 			br = new BufferedReader(new FileReader(fileName));			
-			while(br.readLine() != null) {
-				String ID = br.readLine().split("=")[1];
+			while(br.readLine() != null) { // Todo Shiki similar to my comment in cargoplane, do we want to account for the fact that the toString of cargoplanes have a few extra lines?
+				String ID = br.readLine().split("=")[1]; // Todo Shiki lowercase id
 				String make = br.readLine().split("=")[1];
 				String model = br.readLine().split("=")[1];
 				double fuelCap = Double.parseDouble(br.readLine().split("=")[1]);
@@ -48,12 +48,14 @@ public class FleetIO {
 			} 
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace();
+			e.printStackTrace(); // Todo Shiki I'm pretty sure you're printing the stack trace twice like this, but I could be wrong
 		}
 		return a;
 
 	}
 
+	 // Todo Shiki you have two methods called save, which is weird. You should be more specific with the naming of at least the second one.
+	
 	/**
 	 * 
 	 * writing an AircraftFleet to a file
@@ -78,12 +80,12 @@ public class FleetIO {
 	private static void save(Aircraft ac, String fileName) {
 		try {
 			bw = new BufferedWriter(new FileWriter(fileName, true));
-			bw.append(ac.toString().replace("\n", "\r\n"));
+			bw.append(ac.toString().replace("\n", "\r\n")); // Todo Shiki This certainly works but only for Windows. If possible, try usith System.getProperty("newline") or something instead of "\r\n"
 			bw.newLine();
 			bw.close();
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace();
+			e.printStackTrace(); // Todo Shiki I'm pretty sure you're printing the stack trace twice like this, but I could be wrong.
 		}
 	}
 }
