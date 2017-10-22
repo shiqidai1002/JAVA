@@ -1,6 +1,7 @@
 
 public class CargoAircraft extends Aircraft {
 
+	 // Todo Shiki NONONO these are not supposed to be static! You will get 30% off on your assignment and then be mad if you don't change this.
 	private static double length;//meter
 	private static double height;//meter
 	private static double width;//meter
@@ -14,6 +15,7 @@ public class CargoAircraft extends Aircraft {
 		calculateCargoArea();
 	}
 
+	 // Todo Shiki either make this nonstatic or pass in the l, w, h, as parameters. 
 	public static void calculateCargoArea() {
 		cargoArea = length * height * width;
 	}
@@ -63,6 +65,7 @@ public class CargoAircraft extends Aircraft {
 		this.width = width;
 	}
 
+	 // Todo Shiki Will this interfere with your AircraftIO java file? Since we're adding extra lines for cargo planes but not accounting for it in the while loop.
 	public String toString() {
 		String s = super.toString() + "\ncargoArea=" + cargoArea + "\n";
 		return s;
