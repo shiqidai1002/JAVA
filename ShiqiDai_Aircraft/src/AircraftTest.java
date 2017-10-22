@@ -1,5 +1,5 @@
 import java.util.List;
-import java.util.ArrayList;
+import java.util.ArrayList; // Todo Shiki unused import statements? 
 
 /**
  * Aircraft Test Program Class
@@ -15,15 +15,15 @@ public class AircraftTest {
 	private static void run(){
 		AircraftFleet fleet = new AircraftFleet();
 		System.out.println("Our Aircraft test program is beginning");
-		System.out.println("");
-		System.out.println("");
+		System.out.println(""); // Todo Shiki System.out.println(); works just as fine.
+		System.out.println(""); // Todo Shiki or if you really want two lines, you can do System.out.println("\n");
 		fleet.add(new Aircraft("N1762J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
 		fleet.add(new Aircraft("N1763J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
 		fleet.add(new Aircraft("N1764J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
 		fleet.add(new Aircraft("N1765J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
 		fleet.add(new Aircraft("N1766J", "Boeing", "777-300", 145538,  160520, 299370,892, 7500, 2, 396));
 		fleet.add(new Aircraft("N1767J", "Airbus", "A333-300", 109185, 121870, 242000,871, 6000, 2, 440));
-		FleetIO.save(fleet, "test9.txt");
+		FleetIO.save(fleet, "test9.txt"); // Todo Shiki Make this a String variable at the top so it can be easily edited
 		System.out.println("Save succeed!");
 		System.out.println("");
 		System.out.println("");
