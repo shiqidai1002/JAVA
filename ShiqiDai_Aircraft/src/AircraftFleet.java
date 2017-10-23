@@ -22,7 +22,7 @@ public class AircraftFleet {
 	}
 	
 	 
-	public String displayAllAircrafts(){
+	public String displayAllAircrafts(){ // Why is this method not just called "toString"?
 		String s = "";
 		for (Aircraft i : fleet){
 			s = s + i.toString() + "\n";
