@@ -19,6 +19,7 @@ public class CargoAircraft extends Aircraft {
 		super(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
 				fuelFlowRate, range, crewNum, payload);
 		this.cargoArea = cargoArea;
+		// TODO SHIKI we're not setting the length width height in this constructor?
 	}
 
 	public void calculateCargoArea() {
@@ -36,7 +37,7 @@ public class CargoAircraft extends Aircraft {
 	 * @param length
 	 *            the length to set
 	 */
-	public void setLength(double length) {
+	public void setLength(double length) { // TODO SHIKI IMPORTANT!!! YOU ARE NOT UDPATING THE TOTAL AREA WHEN THE LENGTH/HEIGHT/WIDTH CHANGES!
 		this.length = length;
 	}
 
