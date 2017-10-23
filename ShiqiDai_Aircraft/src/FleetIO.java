@@ -42,7 +42,7 @@ public class FleetIO {
 				double range = Double.parseDouble(br.readLine().split("=")[1]);
 				int crewNum = Integer.parseInt(br.readLine().split("=")[1]);
 				int payload = Integer.parseInt(br.readLine().split("=")[1]);
-				if(s == "CargoAircraft"){
+				if(s == "CargoAircraft"){ // TODO SHIKI IMPORTANT! YOU ARE NOT UPDATING s SO THIS WILL ONLY BE CORRECT IF THEY ARE ALL CARGO OR ALL NOT CARGO
 					double cargoArea = Double.parseDouble(br.readLine().split("=")[1]);
 					ac = new CargoAircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
 							fuelFlowRate, range, crewNum, payload, cargoArea);
@@ -54,7 +54,7 @@ public class FleetIO {
 			} 
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace(); //TODO George our professor gave us this template. I am not sure if it's true as well.
+			e.printStackTrace();
 		}
 		return a;
 
@@ -85,8 +85,9 @@ public class FleetIO {
 	 */
 	private static void save(Aircraft ac, String fileName) {
 		try {
+			final String newline = System.getProperty("line.separator");
 			bw = new BufferedWriter(new FileWriter(fileName, true));
-			bw.append(ac.toString().replace("\n", "\r\n")); // TODO George I remember my professor uses mac. However I don't know how to use System.getProperty("newline") or something instead of "\r\n".
+			bw.append(ac.toString().replace("\n", newline)); // TODO Shiki I made the change for you here.
 			bw.newLine();
 			bw.close();
 		} catch (IOException e) {
