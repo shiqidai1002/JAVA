@@ -23,7 +23,7 @@ public class Aircraft {
 	/**
 	 * Aircraft class constructor
 	 */
-	public Aircraft() {
+	public Aircraft() { // TODO SHIKI this constructor doesn't do anything, why do you have it?
 	}
 		
 	/*
