@@ -1,51 +1,63 @@
 
 public class CargoAircraft extends Aircraft {
 
-	private double length;//meter
-	private double height;//meter
-	private double width;//meter
-	private double cargoArea;//cubic meter
+	private double cargoAreaLength;// meter
+	private double cargoAreaHeight;// meter
+	private double cargoAreaWidth;// meter
+	private double cargoArea;// cubic meter
 
-	public CargoAircraft(double length, double height, double width) {
-		super();
-		this.length = length;
-		this.height = height;
-		this.width = width;
+	/*
+	 * passed-in values: normal aircraft + 3 cargoAircraft variables
+	 */
+	public CargoAircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight,
+			double cruiseSpeed, double fuelFlowRate, int crewNum, int payload, double length, double height,
+			double width) {
+		super(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed, fuelFlowRate, crewNum, payload);
+		this.cargoAreaLength = length;
+		this.cargoAreaHeight = height;
+		this.cargoAreaWidth = width;
 		calculateCargoArea();
 	}
-	
-	public CargoAircraft(String id, String make, String model, double fuelCap, double weight, double cargoWeight,
-			double maxTakeoffWeight, double cruiseSpeed, double fuelFlowRate, double range, int crewNum, int payload, double cargoArea) {
-		super(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
-				fuelFlowRate, range, crewNum, payload);
+
+	/*
+	 * Passed-in values: normal aircraft + 3 cargoAircraft variables + cargoArea
+	 * This is only used for reading profiles from disk.
+	 */
+	public CargoAircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight,
+			double cruiseSpeed, double fuelFlowRate, int crewNum, int payload, double length, double height,
+			double width, double cargoArea) {
+		super(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed, fuelFlowRate, crewNum, payload);
+		this.cargoAreaLength = length;
+		this.cargoAreaHeight = height;
+		this.cargoAreaWidth = width;
 		this.cargoArea = cargoArea;
-		// TODO SHIKI we're not setting the length width height in this constructor?
 	}
 
 	public void calculateCargoArea() {
-		cargoArea = length * height * width;
+		cargoArea = cargoAreaHeight * cargoAreaHeight * cargoAreaHeight;
 	}
 
 	/**
 	 * @return the length
 	 */
 	public double getLength() {
-		return length;
+		return cargoAreaHeight;
 	}
 
 	/**
 	 * @param length
 	 *            the length to set
 	 */
-	public void setLength(double length) { // TODO SHIKI IMPORTANT!!! YOU ARE NOT UDPATING THE TOTAL AREA WHEN THE LENGTH/HEIGHT/WIDTH CHANGES!
-		this.length = length;
+	public void setLength(double length) {
+		this.cargoAreaHeight = length;
+		calculateCargoArea();
 	}
 
 	/**
 	 * @return the height
 	 */
 	public double getHeight() {
-		return height;
+		return cargoAreaHeight;
 	}
 
 	/**
@@ -53,14 +65,15 @@ public class CargoAircraft extends Aircraft {
 	 *            the height to set
 	 */
 	public void setHeight(double height) {
-		this.height = height;
+		this.cargoAreaHeight = height;
+		calculateCargoArea();
 	}
 
 	/**
 	 * @return the width
 	 */
 	public double getWidth() {
-		return width;
+		return cargoAreaHeight;
 	}
 
 	/**
@@ -68,12 +81,14 @@ public class CargoAircraft extends Aircraft {
 	 *            the width to set
 	 */
 	public void setWidth(double width) {
-		this.width = width;
+		this.cargoAreaHeight = width;
+		calculateCargoArea();
 	}
 
-	 
 	public String toString() {
-		String s = super.toString().replaceFirst("Aircraft", "CargoAircraft") + "\ncargoArea=" + cargoArea + "\n";
+		String s = super.toString().replace("\n[Aircraft]", "\n[CargoAircraft]") + "\ncargoAreaLength=" + cargoAreaLength
+				+ "\ncargoAreaHeight=" + cargoAreaHeight + "\ncargoAreaWidth=" + cargoAreaWidth + "\ncargoArea="
+				+ cargoArea;
 		return s;
 	}
 

@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Aircraft class
@@ -6,8 +9,8 @@
  *
  */
 public class Aircraft {
-	//fields
-	String id; 
+	// fields
+	String id;
 	String make;
 	String model;
 	double fuelCap; // Kilograms
@@ -19,16 +22,9 @@ public class Aircraft {
 	double range;// Kilometers
 	int crewNum;
 	int payload;
-	
-	/**
-	 * Aircraft class constructor
-	 */
-	public Aircraft() { // TODO SHIKI this constructor doesn't do anything, why do you have it?
-	}
-		
+
 	/*
-	 * constructor 2
-	 * full 12 variables
+	 * constructor 2 full 12 variables
 	 */
 	public Aircraft(String id, String make, String model, double fuelCap, double weight, double cargoWeight,
 			double maxTakeoffWeight, double cruiseSpeed, double fuelFlowRate, double range, int crewNum, int payload) {
@@ -47,11 +43,11 @@ public class Aircraft {
 	}
 
 	/*
-	 * constructor 3
+	 * constructor 3  10 variables
 	 */
-	public Aircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight, double cruiseSpeed,
-			double fuelFlowRate, int crewNum, int payload) {
-		this.id = id; 
+	public Aircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight,
+			double cruiseSpeed, double fuelFlowRate, int crewNum, int payload) {
+		this.id = id;
 		this.make = make;
 		this.model = model;
 		this.fuelCap = fuelCap;
@@ -120,7 +116,7 @@ public class Aircraft {
 	 *            the id to set
 	 */
 	public void setID(String id) {
-		id = id;
+		this.id = id;
 	}
 
 	/**
@@ -130,7 +126,6 @@ public class Aircraft {
 	public void setRange(double range) {
 		this.range = range;
 	}
-	
 
 	/**
 	 * @return the crewNum
@@ -256,26 +251,26 @@ public class Aircraft {
 		return maxTakeoffWeight - weight - cargoWeight - fuelCap;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
+	public void save(Aircraft ac, String fileName) {
+		BufferedWriter bw;
+		try {
+			final String newline = System.getProperty("line.separator");
+			bw = new BufferedWriter(new FileWriter(fileName, true));
+			bw.append(ac.toString().replace("\n", newline));
+			bw.newLine();
+			bw.close();
+		} catch (IOException e) {
+			System.err.println("IO ERROR received: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public String toString() {
-		return "[Aircraft] "
-				+ "\nID=" + id 
-				+ "\nmake=" + make 
-				+ "\nmodel=" + model 
-				+ "\nfuelCap=" + fuelCap 
-				+ "\nweight=" + weight 
-				+ "\ncargoWeight=" + cargoWeight 
-				+ "\nmaxTakeoffWeight=" + maxTakeoffWeight 
-				+ "\ncruiseSpeed=" + cruiseSpeed 
-				+ "\nfuelFlowRate=" + fuelFlowRate 
-				+ "\nrange=" + range 
-				+ "\ncrewNum=" + crewNum
-				+ "\npayload=" + payload + "\n"; 
+		return "\n[Aircraft]" + "\nID=" + id + "\nmake=" + make + "\nmodel=" + model + "\nfuelCap=" + fuelCap
+				+ "\nweight=" + weight + "\ncargoWeight=" + cargoWeight + "\nmaxTakeoffWeight=" + maxTakeoffWeight
+				+ "\ncruiseSpeed=" + cruiseSpeed + "\nfuelFlowRate=" + fuelFlowRate + "\nrange=" + range + "\ncrewNum="
+				+ crewNum + "\npayload=" + payload;
 	}
 
 }

@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AircraftFleet {
-	protected ArrayList<Aircraft> fleet; 
-	private HashMap<String, Aircraft> fleetHm; 
+	protected ArrayList<Aircraft> fleet;
+	private HashMap<String, Aircraft> fleetHm;
 
 	public AircraftFleet() {
 		fleet = new ArrayList<Aircraft>();
 		fleetHm = new HashMap<String, Aircraft>();
 	}
-	
 
 	public void add(Aircraft a) {
 		fleet.add(a);
@@ -20,11 +19,10 @@ public class AircraftFleet {
 		fleet.remove(a);
 		fleetHm.remove(a.id);
 	}
-	
-	 
-	public String displayAllAircrafts(){ // Why is this method not just called "toString"?
+
+	public String displayAllAircrafts() {
 		String s = "";
-		for (Aircraft i : fleet){
+		for (Aircraft i : fleet) {
 			s = s + i.toString() + "\n";
 		}
 		return s;
@@ -33,5 +31,5 @@ public class AircraftFleet {
 	public Aircraft getByID(String ID) {
 		return fleetHm.get(ID);
 	}
-	
+
 }

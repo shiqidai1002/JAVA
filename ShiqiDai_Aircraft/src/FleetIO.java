@@ -1,11 +1,8 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader; // Todo Shiki unused import statements?
-import java.io.Writer;
 
 /**
  * @author Shiqi
@@ -27,10 +24,11 @@ public class FleetIO {
 		AircraftFleet a = new AircraftFleet();
 		Aircraft ac;
 		try {
-			br = new BufferedReader(new FileReader(fileName));	
+			br = new BufferedReader(new FileReader(fileName));
+			br.readLine();
 			String s = br.readLine();
-			while(s != null) { 
-				String id = br.readLine().split("=")[1]; // 
+			while (s != null) {
+				String id = br.readLine().split("=")[1];
 				String make = br.readLine().split("=")[1];
 				String model = br.readLine().split("=")[1];
 				double fuelCap = Double.parseDouble(br.readLine().split("=")[1]);
@@ -42,16 +40,23 @@ public class FleetIO {
 				double range = Double.parseDouble(br.readLine().split("=")[1]);
 				int crewNum = Integer.parseInt(br.readLine().split("=")[1]);
 				int payload = Integer.parseInt(br.readLine().split("=")[1]);
-				if(s == "CargoAircraft"){ // TODO SHIKI IMPORTANT! YOU ARE NOT UPDATING s SO THIS WILL ONLY BE CORRECT IF THEY ARE ALL CARGO OR ALL NOT CARGO
+				if (s.equals("[CargoAircraft]")) {
+					double cargoAreaLength = Double.parseDouble(br.readLine().split("=")[1]);
+					double cargoAreaHeight = Double.parseDouble(br.readLine().split("=")[1]);
+					double cargoAreaWidth = Double.parseDouble(br.readLine().split("=")[1]);
 					double cargoArea = Double.parseDouble(br.readLine().split("=")[1]);
-					ac = new CargoAircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
-							fuelFlowRate, range, crewNum, payload, cargoArea);
+					ac = new CargoAircraft(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed,
+							fuelFlowRate, crewNum, payload, cargoAreaLength, cargoAreaHeight, cargoAreaWidth,
+							cargoArea);
+				} else {
+					ac = new Aircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
+							fuelFlowRate, range, crewNum, payload);
 				}
-				ac = new Aircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
-						fuelFlowRate, range, crewNum, payload);
 				a.add(ac);
-				br.readLine();//skip the blank that divided different Aircraft in the file
-			} 
+				br.readLine();// skip the blank that divided different Aircraft
+								// in the file
+				s = br.readLine();// update s
+			}
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
 			e.printStackTrace();
@@ -60,8 +65,6 @@ public class FleetIO {
 
 	}
 
-	 // TODO George This is what our professor asked.  I will post his instructions towards this assignment.
-	
 	/**
 	 * 
 	 * writing an AircraftFleet to a file
@@ -87,12 +90,12 @@ public class FleetIO {
 		try {
 			final String newline = System.getProperty("line.separator");
 			bw = new BufferedWriter(new FileWriter(fileName, true));
-			bw.append(ac.toString().replace("\n", newline)); // TODO Shiki I made the change for you here.
+			bw.append(ac.toString().replace("\n", newline));
 			bw.newLine();
 			bw.close();
 		} catch (IOException e) {
 			System.err.println("IO ERROR received: " + e.getMessage());
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	}
 }
