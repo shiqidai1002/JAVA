@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+
+/**
+ * @author Shiqi
+ *
+ */
+public class DogShowtime {
+
+	public static void main(String[] args){
+		Husky h1 = new Husky();
+		((Dog)h1).bark();
+	}
+}

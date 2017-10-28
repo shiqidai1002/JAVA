@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+
+/**
+ * @author Shiqi
+ *
+ */
+public class Husky extends Dog{
+	public Husky(){
+		System.out.println("Husky constructor called!");
+	}
+	
+	public void bark(){
+		System.out.println("bow-wow! I AM A HUSKY!");
+	}
+}

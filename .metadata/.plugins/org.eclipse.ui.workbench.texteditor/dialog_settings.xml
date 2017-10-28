@@ -2,28 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="\n" key="selection"/>
+		<item value="id" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="true" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ID"/>
+			<item value="hm"/>
+			<item value="br.readLine().split(&quot;=&quot;)[1]"/>
+			<item value="&#x09;double weight= br.readLine().split(&quot;=&quot;)[1]"/>
 			<item value="/n"/>
 			<item value=", "/>
 			<item value="import java.util.ArrayList;"/>
 			<item value="a != 0"/>
-			<item value="a"/>
-			<item value="int a = 1;"/>
-			<item value="↓"/>
-			<item value="】"/>
 		</list>
 		<list key="replacehistory">
+			<item value="id"/>
+			<item value="fleetHm"/>
+			<item value="Double.parseDouble(br.readLine().split(&quot;=&quot;)[1]);"/>
 			<item value="\n"/>
 			<item value="/n"/>
 			<item value="true"/>
 			<item value=""/>
 			<item value="userInput"/>
-			<item value="invalidInput"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

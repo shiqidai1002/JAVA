@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="GBK" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883329</millis>
+  <sequence>0</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>instance</method>
+  <thread>1</thread>
+  <message>The instace of AircraftFleet has been called.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883458</millis>
+  <sequence>1</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883461</millis>
+  <sequence>2</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883464</millis>
+  <sequence>3</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883467</millis>
+  <sequence>4</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883469</millis>
+  <sequence>5</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883472</millis>
+  <sequence>6</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883474</millis>
+  <sequence>7</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883477</millis>
+  <sequence>8</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883479</millis>
+  <sequence>9</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+<record>
+  <date>2017-10-27T20:18:03</date>
+  <millis>1509149883481</millis>
+  <sequence>10</sequence>
+  <logger>AircraftFleet</logger>
+  <level>INFO</level>
+  <class>edu.neu.csye6200.aircraft.AircraftFleet</class>
+  <method>add</method>
+  <thread>1</thread>
+  <message>one aircraft has been added into fleet.</message>
+</record>
+</log>
