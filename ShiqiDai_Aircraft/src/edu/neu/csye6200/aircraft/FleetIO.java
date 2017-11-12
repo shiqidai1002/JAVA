@@ -26,7 +26,7 @@ public class FleetIO {
 		}
 		log = Logger.getLogger(FleetIO.class.getName());
 		log.addHandler(handler);
-  }
+	}
 
 	public AircraftFleet load(String fileName) {
 		AircraftFleet a = AircraftFleet.instance();
@@ -53,14 +53,19 @@ public class FleetIO {
 					double cargoAreaHeight = Double.parseDouble(br.readLine().split("=")[1]);
 					double cargoAreaWidth = Double.parseDouble(br.readLine().split("=")[1]);
 					double cargoArea = Double.parseDouble(br.readLine().split("=")[1]);
-					ac = new CargoAircraft(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed,
-							fuelFlowRate, crewNum, payload, cargoAreaLength, cargoAreaHeight, cargoAreaWidth,
-							cargoArea);
+					try {
+						ac = new CargoAircraft(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed,
+								fuelFlowRate, crewNum, payload, cargoAreaLength, cargoAreaHeight, cargoAreaWidth,
+								cargoArea);
+						a.add(ac);
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
 				} else {
 					ac = new Aircraft(id, make, model, fuelCap, weight, cargoWeight, maxTakeoffWeight, cruiseSpeed,
 							fuelFlowRate, range, crewNum, payload);
+					a.add(ac);
 				}
-				a.add(ac);
 				br.readLine();// skip the blank that divided different Aircraft
 								// in the file
 				s = br.readLine();// update s
@@ -99,7 +104,7 @@ public class FleetIO {
 	private void save(Aircraft ac, String fileName) {
 		try {
 			final String newline = System.getProperty("line.separator");
-      boolean appendToFile = true;
+			boolean appendToFile = true;
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, appendToFile));
 			bw.append(ac.toString().replace("\n", newline));
 			bw.newLine();

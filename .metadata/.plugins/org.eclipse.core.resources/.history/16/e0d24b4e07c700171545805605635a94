@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package edu.neu.csye6200.ui;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class BGStem {
+	private double length;
+	private double xstart;
+	private double ystart;
+	private double xend;
+	private double yend;
+	
+	
+	public BGStem(double length, double xstart, double ystart, double xend, double yend) {
+		super();
+		this.length = length;
+		this.xstart = xstart;
+		this.ystart = ystart;
+		this.xend = xend;
+		this.yend = yend;
+	}
+}

@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package obs;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class EventPublisher {
+
+}

@@ -1,0 +1,33 @@
+/**
+ * 
+ */
+package ui;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class MyCanvas extends JPanel {
+
+	
+	
+	public void paint(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		
+		Dimension size = getSize();
+		
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(0, 0, size.width, size.height);
+		
+		g2d.setColor(Color.GREEN);
+		g2d.drawString("Hello World 2D", 10, 20);
+	}
+
+}

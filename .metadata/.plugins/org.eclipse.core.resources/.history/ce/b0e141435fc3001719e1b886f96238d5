@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package ui;
+
+import javax.swing.JPanel;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class MyCanvas extends JPanel {
+
+}

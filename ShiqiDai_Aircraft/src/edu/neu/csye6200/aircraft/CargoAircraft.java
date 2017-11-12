@@ -26,11 +26,13 @@ public class CargoAircraft extends Aircraft {
 	 */
 	public CargoAircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight,
 			double cruiseSpeed, double fuelFlowRate, int crewNum, int payload, double length, double height,
-			double width, double cargoArea) {
+			double width, double cargoArea) throws Exception {
 		super(id, make, model, fuelCap, weight, maxTakeoffWeight, cruiseSpeed, fuelFlowRate, crewNum, payload);
 		this.cargoAreaLength = length;
 		this.cargoAreaHeight = height;
 		this.cargoAreaWidth = width;
+		if(length * height * width != cargoArea)
+			throw new Exception("Please rechck your entering!");
 		this.cargoArea = cargoArea;
 	}
 

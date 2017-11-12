@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package edu.neu.csye6200.ui;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class BGRule {
+	private double length;
+	private double xstart;
+	private double ystart;
+	private double xend;
+	private double yend;
+	
+	public static double[] calculate(double length, double xstart, double ystart, double xend, double yend){
+		double[] result;
+		
+		return result;
+	}
+}

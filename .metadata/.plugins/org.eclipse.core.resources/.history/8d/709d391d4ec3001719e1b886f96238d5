@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package obs;
+
+import java.util.Observable;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class EventPublisher extends Observable{
+	private boolean done = false; //set true to stop the run method
+	
+	//Constructor
+	public EventPublisher(){
+		System.out.println("EventPublisher - we are here");
+	}
+	
+	public void doAction(){
+		setChanged();//Something happened
+	}
+	
+	public void run(){
+		while(!done){
+			doAction();
+		}
+	}
+}

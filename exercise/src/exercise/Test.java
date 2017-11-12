@@ -1,16 +1,17 @@
 package exercise;
 
-public class Test {
-	public static void main(String[] args){
-		System.out.println(ReverseInteger.reverseByStack(57612));
-		
-		
-	}
-	
-	  /*public static void main(String[] args) {
-		  	String chicken = "chicken";
-		    Pair p = new Pair(0, 0.0);
-		    System.out.println(p.equals(chicken));
-		  }*/
+import java.util.HashMap;
+import java.util.Map;
 
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<Integer,Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            if(map.containsKey(target - nums[i])){
+                return new int[] { map.get(target - nums[i]), i };
+            }
+            map.put(nums[i], i);   
+        }
+        throw new IllegalArgumentException("No solution!");
+    }
 }

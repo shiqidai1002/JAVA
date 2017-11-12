@@ -25,7 +25,7 @@ public class Aircraft implements Comparable<Aircraft>{
 	int payload;
 
 	/*
-	 * constructor 2 full 12 variables
+	 * constructor 1: full 12 variables
 	 */
 	public Aircraft(String id, String make, String model, double fuelCap, double weight, double cargoWeight,
 			double maxTakeoffWeight, double cruiseSpeed, double fuelFlowRate, double range, int crewNum, int payload) {
@@ -44,7 +44,7 @@ public class Aircraft implements Comparable<Aircraft>{
 	}
 
 	/*
-	 * constructor 3  10 variables
+	 * constructor 2:  10 variables
 	 */
 	public Aircraft(String id, String make, String model, double fuelCap, double weight, double maxTakeoffWeight,
 			double cruiseSpeed, double fuelFlowRate, int crewNum, int payload) {
