@@ -14,90 +14,77 @@ public class BGGeneration {
 	private double angle;
 	private double initialStemLength;
 	ArrayList<BGStem> tree = new ArrayList<BGStem>();
-	Node first;
+	BGStem firstStem;
 	private int iteration;
-	private int generationNum;
-	private int counter = 0;
+	private int lastRoundGeneratedNum = 1;
 
 	public BGGeneration(int forkNum, double initialStemLength, int iteration, double angle) {
 		this.forkNum = forkNum;
 		this.initialStemLength = initialStemLength;
 		this.iteration = iteration;
-		this.generationNum = calculateGenerationNum(iteration);
+		// this.generationNum = calculateGenerationNum(iteration);
 		this.angle = angle;
-		generate();
-	}
-
-	public int calculateGenerationNum(int iteration) {
-		int temp = 0;
-		for (int i = 0; i < iteration; i++) {
-			temp = (int) (temp + Math.pow(forkNum, i + 1));
-		}
-		return temp;
-	}
-
-	class Node {
-		Node nextCenter;
-		Node nextLeft;
-		Node nextRight;
-		BGStem stem;
-
-		public Node(Node nextCenter, Node nextLeft, Node nextRight, BGStem stem) {
-			this.nextCenter = nextCenter;
-			this.nextLeft = nextLeft;
-			this.nextRight = nextRight;
-			this.stem = stem;
-		}
-	}
-
-	public void generate() {
-		System.out.println("GenerationNum: " + generationNum);
-		BGStem firstStem = new BGStem(this.initialStemLength, 0.0, 0.0, 0.0, this.initialStemLength, this.angle);
-		// System.out.println("We have the first one: " + firstStem.toString()
-		// + "\nlength: " + firstStem.length
-		// + "\nxstart: " + firstStem.xstart
-		// + "\nystart: " + firstStem.ystart
-		// + "\nxend: " + firstStem.xend
-		// + "\nyend: " + firstStem.yend
-		// + "\nangle: " + firstStem.angle);
+		firstStem = new BGStem(this.initialStemLength, 0.0, 0.0, 0.0, this.initialStemLength, this.angle);
 		tree.add(firstStem);
-		first = new Node(null, null, null, firstStem);
-		generate(first);
 
+		for (int i = 1; i <= iteration; i++) {
+//			System.out.println("\nGeneration " + i + " begins!");
+//			System.out.println("lastRoundGeneratedNum: " + lastRoundGeneratedNum);
+//			System.out.println("Tree size when start: " + tree.size());
+//			System.out.println("index from " + (tree.size() - 1) + " to " + (tree.size() - lastRoundGeneratedNum));
+			for (int j = tree.size() - 1; j >= tree.size() - lastRoundGeneratedNum; j--) {
+				System.out.println("Generate from: " + j);
+				generate(tree.get(j));
+			}
+			lastRoundGeneratedNum = calculateGenerationNum(i);
+			System.out.println("Tree size when end: " + tree.size());
+		}
+
+		System.out.println("All stems we have: " + tree.size());
 	}
 
-	public void generate(Node father) {
+	public int calculateGenerationNum(int i) {
+		return (int) Math.pow(forkNum, i);
+	}
+
+	// class Node {
+	// Node nextCenter;
+	// Node nextLeft;
+	// Node nextRight;
+	// BGStem stem;
+	//
+	// public Node(Node nextCenter, Node nextLeft, Node nextRight, BGStem stem)
+	// {
+	// this.nextCenter = nextCenter;
+	// this.nextLeft = nextLeft;
+	// this.nextRight = nextRight;
+	// this.stem = stem;
+	// }
+	// }
+
+	// System.out.println("We have the first one: " + firstStem.toString()
+	// + "\nlength: " + firstStem.length
+	// + "\nxstart: " + firstStem.xstart
+	// + "\nystart: " + firstStem.ystart
+	// + "\nxend: " + firstStem.xend
+	// + "\nyend: " + firstStem.yend
+	// + "\nangle: " + firstStem.angle);
+
+	public void generate(BGStem stem) {
 		BGStem center = new BGStem();
-		center.calculate(father.stem.length, father.stem.xstart, father.stem.ystart, father.stem.xend, father.stem.yend,
-				90);
-		System.out.println("I draw a center stem" + counter);
+		center.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 0);
 		tree.add(center);
+		System.out.println("tree++");
 
 		BGStem left = new BGStem();
-		left.calculate(father.stem.length, father.stem.xstart, father.stem.ystart, father.stem.xend, father.stem.yend,
-				0);
-		System.out.println("I draw a left stem" + counter);
+		left.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 90);
 		tree.add(left);
+		System.out.println("tree++");
 
 		BGStem right = new BGStem();
-		right.calculate(father.stem.length, father.stem.xstart, father.stem.ystart, father.stem.xend, father.stem.yend,
-				180);
-		System.out.println("I draw a right stem" + counter);
+		right.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 180);
 		tree.add(right);
-
-		father.nextCenter = new Node(null, null, null, center);
-		System.out.println("center Node has extended");
-		father.nextLeft = new Node(null, null, null, left);
-		System.out.println("left Node has extended");
-		father.nextRight = new Node(null, null, null, right);
-		System.out.println("right Node has extended");
-		counter++;
-
-		generate(father.nextCenter);
-		generate(father.nextLeft);
-		generate(father.nextRight);
-		// System.out.println("counter: " + counter);
-
+		System.out.println("tree++");
 	}
 
 }

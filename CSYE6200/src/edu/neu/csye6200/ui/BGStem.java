@@ -44,9 +44,9 @@ public class BGStem {
 		this. xstart = xend;
 		this.ystart = yend;
 		this.xend = xend + this.length * Math.cos(Math.toRadians(angle));
-		System.out.println("cos(" + angle +") : "+ Math.cos(angle));
+		//System.out.println("cos(" + angle +") : "+ Math.cos(angle));
 		this.yend = yend + this.length * Math.sin(Math.toRadians(angle));
-		System.out.println("sin(" + angle +") : "+ Math.sin(angle));
+		//System.out.println("sin(" + angle +") : "+ Math.sin(angle));
 		this.angle = angle + 90;
 	}
 	
