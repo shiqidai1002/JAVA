@@ -1,0 +1,54 @@
+/**
+ * 
+ */
+package edu.neu.csye6200.ui;
+
+import java.awt.BasicStroke;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+/**
+ * @author Shiqi
+ *
+ */
+public class MyCanvas extends Canvas {
+	private MyCanvas canvas;
+	private Graphics g;
+	private ArrayList<BGStem> tree;
+
+	public MyCanvas() {
+
+	}
+
+	/**
+	 * @param tree2
+	 */
+	public MyCanvas(ArrayList<BGStem> tree2) {
+		tree = tree2;
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		Dimension size = getSize();
+		g2d.setColor(Color.WHITE);
+		g2d.fillRect(0, 0, size.width, size.height);
+		g2d.setColor(Color.black);
+		if (tree == null)
+			g2d.drawLine(0, 0, 0, 0);
+		else {
+			for (BGStem stem : tree) {
+				g2d.drawLine((int) stem.xstart + 450, 600 - (int) stem.ystart + 100, (int) stem.xend + 450,
+						600 - (int) stem.yend + 100);
+			}
+		}
+	}
+
+}

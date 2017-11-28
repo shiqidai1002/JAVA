@@ -10,81 +10,60 @@ import java.util.ArrayList;
  *
  */
 public class BGGeneration {
-	private int forkNum;
-	private double angle;
-	private double initialStemLength;
-	ArrayList<BGStem> tree = new ArrayList<BGStem>();
-	BGStem firstStem;
+	private BGRule rule;
+	private BGStem firstStem;
 	private int iteration;
 	private int lastRoundGeneratedNum = 1;
+	protected ArrayList<BGStem> tree = new ArrayList<BGStem>();
 
-	public BGGeneration(int forkNum, double initialStemLength, int iteration, double angle) {
-		this.forkNum = forkNum;
-		this.initialStemLength = initialStemLength;
+	//use given rule and number of iteration to generate one tree.
+	public BGGeneration(BGRule rule, int iteration) {
+		this.rule = rule;
 		this.iteration = iteration;
-		// this.generationNum = calculateGenerationNum(iteration);
-		this.angle = angle;
-		firstStem = new BGStem(this.initialStemLength, 0.0, 0.0, 0.0, this.initialStemLength, this.angle);
-		tree.add(firstStem);
+		firstStem = new BGStem(rule.initialStemLength, 0.0, 0.0, 0.0, rule.initialStemLength, 90);
+		tree.add(firstStem);// add the first stem into our generation
+		generate();//generate the whole tree
+	}
 
+	/**
+	 * based on current rule, generate the whole tree.
+	 */
+	private void generate() {
 		for (int i = 1; i <= iteration; i++) {
-//			System.out.println("\nGeneration " + i + " begins!");
-//			System.out.println("lastRoundGeneratedNum: " + lastRoundGeneratedNum);
-//			System.out.println("Tree size when start: " + tree.size());
-//			System.out.println("index from " + (tree.size() - 1) + " to " + (tree.size() - lastRoundGeneratedNum));
-			for (int j = tree.size() - 1; j >= tree.size() - lastRoundGeneratedNum; j--) {
+			System.out.println("\nGeneration " + i + " begins!");
+			System.out.println("lastRoundGeneratedNum: " + lastRoundGeneratedNum);
+			System.out.println("Tree size when start: " + tree.size());
+			System.out.println("index from " + (tree.size() - 1) + " to " + (tree.size() - lastRoundGeneratedNum));
+			int from = tree.size() - 1;
+			int to = tree.size() - lastRoundGeneratedNum;
+			for (int j = from; j >= to; j--) {
 				System.out.println("Generate from: " + j);
-				generate(tree.get(j));
+				tree = rule.generateFromStem(tree, tree.get(j));
 			}
 			lastRoundGeneratedNum = calculateGenerationNum(i);
 			System.out.println("Tree size when end: " + tree.size());
 		}
-
 		System.out.println("All stems we have: " + tree.size());
+		
 	}
 
-	public int calculateGenerationNum(int i) {
-		return (int) Math.pow(forkNum, i);
+	public int calculateGenerationNum(int iteration) {
+		return (int) Math.pow(rule.forkNum, iteration);
 	}
 
-	// class Node {
-	// Node nextCenter;
-	// Node nextLeft;
-	// Node nextRight;
-	// BGStem stem;
-	//
-	// public Node(Node nextCenter, Node nextLeft, Node nextRight, BGStem stem)
-	// {
-	// this.nextCenter = nextCenter;
-	// this.nextLeft = nextLeft;
-	// this.nextRight = nextRight;
-	// this.stem = stem;
-	// }
-	// }
 
-	// System.out.println("We have the first one: " + firstStem.toString()
-	// + "\nlength: " + firstStem.length
-	// + "\nxstart: " + firstStem.xstart
-	// + "\nystart: " + firstStem.ystart
-	// + "\nxend: " + firstStem.xend
-	// + "\nyend: " + firstStem.yend
-	// + "\nangle: " + firstStem.angle);
+	/**
+	 * @return the firstStem
+	 */
+	public BGStem getFirstStem() {
+		return firstStem;
+	}
 
-	public void generate(BGStem stem) {
-		BGStem center = new BGStem();
-		center.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 0);
-		tree.add(center);
-		System.out.println("tree++");
-
-		BGStem left = new BGStem();
-		left.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 90);
-		tree.add(left);
-		System.out.println("tree++");
-
-		BGStem right = new BGStem();
-		right.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, 180);
-		tree.add(right);
-		System.out.println("tree++");
+	/**
+	 * @return the iteration
+	 */
+	public int getIteration() {
+		return iteration;
 	}
 
 }

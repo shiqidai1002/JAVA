@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+package exercise;
+import java.util.HashMap;
+import java.util.Map;
+/**
+ * @author Shiqi
+ *
+ */
+public class FrequencyCounter {
+	private Map<String,Integer> map;
+
+    public FrequencyCounter(Map<String,Integer> map) {
+        this.map = map;
+    }
+
+    public void increment(String s) {
+        // TODO implement me!
+    	if (map.get(s) == null){
+    		map.put(s, 1);
+    	}
+    	else{
+    		int count = get(s) + 1;
+    		map.put(s, count);
+    	}
+    }
+
+    public String toString() {
+        return map.toString();
+    }
+
+    public static void main(String[] args) {
+        FrequencyCounter counter = new FrequencyCounter(new HashMap<>());
+
+        for (String arg: args) counter.increment(arg);
+
+        System.out.println(counter.toString());
+    }
+}

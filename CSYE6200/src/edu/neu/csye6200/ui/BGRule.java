@@ -3,39 +3,71 @@
  */
 package edu.neu.csye6200.ui;
 
+import java.util.ArrayList;
+
 /**
  * @author Shiqi
  *
  */
 public class BGRule {
+	protected int forkNum;
+	protected double angle;
+	protected double initialStemLength;
+	
+	public BGRule(int forkNum, double angle, double initialStemLength){
+		this.forkNum = forkNum;
+		this.angle = angle;
+		this.initialStemLength = initialStemLength;
+	}
+	
+	/*
+	 * According to current rule, generate from a given stem
+	 */
+	public ArrayList<BGStem> generateFromStem(ArrayList<BGStem> tree,BGStem stem) {
+		if (forkNum % 2 != 0) {
+			BGStem center = new BGStem();
+			center.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, stem.angle);
+			tree.add(center);
+			for (int i = 1; i <= forkNum / 2; i++) {
+				BGStem left = new BGStem();
+				left.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, stem.angle + angle * i);
+				tree.add(left);
+				BGStem right = new BGStem();
+				right.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, stem.angle - angle * i);
+				tree.add(right);
+			}
+		} else {
+			for (int i = 1; i <= forkNum / 2; i++) {
+				BGStem left = new BGStem();
+				left.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, stem.angle + angle * i);
+				tree.add(left);
+				BGStem right = new BGStem();
+				right.calculate(stem.length, stem.xstart, stem.ystart, stem.xend, stem.yend, stem.angle - angle * i);
+				tree.add(right);
+			}
+		}
+		return tree;
+	}
+	
+	/**
+	 * @return the forkNum
+	 */
+	public int getForkNum() {
+		return forkNum;
+	}
 
-	public static double[] calculateCenter(double length, double xstart, double ystart, double xend, double yend,double angle) {
-		double length_n = length / 2;
-		double xstart_n = xend;
-		double ystart_n = yend;
-		double xend_n = xend;
-		double yend_n = yend + length_n;
-		double[] result = { length_n, xstart_n, ystart_n, xend_n, yend_n };
-		return result;
+	/**
+	 * @return the angle
+	 */
+	public double getAngle() {
+		return angle;
 	}
-	
-	public static double[] calculateLeft(double length, double xstart, double ystart, double xend, double yend, double angle) {
-		double length_n = length / 2;
-		double xstart_n = xend;
-		double ystart_n = yend;
-		double xend_n = xend - length_n * Math.cos(angle);
-		double yend_n = yend + length_n * Math.sin(angle);
-		double[] result = { length_n, xstart_n, ystart_n, xend_n, yend_n };
-		return result;
+
+	/**
+	 * @return the initialStemLength
+	 */
+	public double getInitialStemLength() {
+		return initialStemLength;
 	}
-	
-	public static double[] calculateRight(double length, double xstart, double ystart, double xend, double yend, double angle) {
-		double length_n = length / 2;
-		double xstart_n = xend;
-		double ystart_n = yend;
-		double xend_n = xend + length_n * Math.cos(angle);
-		double yend_n = yend + length_n * Math.sin(angle);;
-		double[] result = { length_n, xstart_n, ystart_n, xend_n, yend_n };
-		return result;
-	}
+
 }

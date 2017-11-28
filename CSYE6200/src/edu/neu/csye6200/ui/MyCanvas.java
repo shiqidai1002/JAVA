@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -15,25 +16,46 @@ import javax.swing.JPanel;
  *
  */
 public class MyCanvas extends JPanel {
+	private ArrayList<BGStem> tree;
 
+	/**
+	 * @param tree2
+	 */
+	public MyCanvas(ArrayList<BGStem> tree2) {
+		tree = tree2;
+		System.out.println("Canvas: I've got the tree!");
+	}
+
+	/**
+	 * 
+	 */
+	public MyCanvas() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param tree the tree to set
+	 */
+	public void setTree(ArrayList<BGStem> tree) {
+		this.tree = tree;
+	}
 	
 	@Override
 	public void paint(Graphics g) {
+		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		
 		Dimension size = getSize();
-		
 		g2d.setColor(Color.WHITE);
 		g2d.fillRect(0, 0, size.width, size.height);
-		
 		g2d.setColor(Color.black);
-		BGGeneration test = new BGGeneration(3, 100, 5, 0);
-		for(BGStem stem : test.tree){
-			g2d.drawLine((int)stem.xstart + 450, (int)stem.ystart + 400, (int)stem.xend +450, (int)stem.yend + 400);
-			System.out.println(stem.toString());
+		if (tree == null)
+			return;
+		else {
+			for (BGStem stem : tree) {
+				g2d.drawLine((int) stem.xstart + 450, 600 - (int) stem.ystart + 100, (int) stem.xend + 450,
+						600 - (int) stem.yend + 100);
+			}
 		}
-		
-		
 	}
 
 }
