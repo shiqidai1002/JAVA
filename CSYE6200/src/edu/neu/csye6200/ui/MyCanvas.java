@@ -17,6 +17,10 @@ import javax.swing.JPanel;
  */
 public class MyCanvas extends JPanel {
 	private ArrayList<BGStem> tree;
+//	private double xstart;
+//	private double ystart;
+//	private double xend;
+//	private double yend;
 
 	/**
 	 * @param tree2
@@ -34,12 +38,18 @@ public class MyCanvas extends JPanel {
 	}
 
 	/**
-	 * @param tree the tree to set
+	 * @param tree
+	 *            the tree to set
 	 */
 	public void setTree(ArrayList<BGStem> tree) {
 		this.tree = tree;
 	}
-	
+
+	public void draw(BGStem stem) {
+		tree.add(stem);
+		this.repaint();
+	}
+
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -48,13 +58,12 @@ public class MyCanvas extends JPanel {
 		g2d.setColor(Color.WHITE);
 		g2d.fillRect(0, 0, size.width, size.height);
 		g2d.setColor(Color.black);
-		if (tree == null)
+		if(tree == null)
 			return;
-		else {
-			for (BGStem stem : tree) {
-				g2d.drawLine((int) stem.xstart + 450, 600 - (int) stem.ystart + 100, (int) stem.xend + 450,
-						600 - (int) stem.yend + 100);
-			}
+		for(int i = 0; i < tree.size(); i++){
+			BGStem stem = tree.get(i);
+		g2d.drawLine((int) stem.xstart + 550, 600 - (int) stem.ystart + 100, (int) stem.xend + 550, 600 - (int) stem.yend + 100);
+		// System.out.println("canvas: I sleep!");
 		}
 	}
 
