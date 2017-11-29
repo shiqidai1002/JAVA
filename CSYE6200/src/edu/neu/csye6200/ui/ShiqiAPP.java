@@ -179,7 +179,7 @@ public class ShiqiAPP implements ActionListener, ChangeListener {
 					+ ", length: " + initialLength + ")" + "\nGenerations: " + generationNum);
 			Thread canvasThread = new Thread(() -> {
 				canvas.setTree(new ArrayList<BGStem>());
-				int sleepTime = 300;
+				int sleepTime = 500;
 				for (BGStem stem : test.tree) {
 					// System.out.println(stem.toString());
 					canvas.draw(stem);

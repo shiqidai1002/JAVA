@@ -29,12 +29,13 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 /**
  * @author Shiqi
  *
  */
-public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
+public class ShiqiAPP implements ActionListener, ChangeListener {
 	private static final int ANGLE_MIN = 0;
 	private static final int ANGLE_MAX = 90;
 	private static final int ANGLE_INIT = 45; // initial stem angle
@@ -68,7 +69,7 @@ public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
 
 	private void initGUI() {
 		frame = new JFrame();
-		frame.setSize(1500, 900);
+		frame.setSize(1500, 950);
 		frame.setTitle("ShiqiAPP");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -132,19 +133,18 @@ public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
 		forkNumList = new JComboBox<String>(forkNumStrings);
 		forkNumList.setSelectedIndex(1);// default selected fork number is 3
 		forkNumList.addActionListener(this);
-		forkNumList.addItemListener(this);
 
 		// initialize the generation number list section
 		JLabel lb4 = new JLabel("<html><font size=+2><b>Generations</b></font></html>");
 		String[] generationNumStrings = { "1", "2", "3", "4", "5", "6", "7" };
 		generationNumList = new JComboBox<String>(generationNumStrings);
 		generationNumList.setSelectedIndex(4);// default selected fork number is
-												// // 5
+												// 5
 		generationNumList.addActionListener(this);
 
 		// rules hot keys
 		JLabel lb5 = new JLabel("<html><font size=+2><b>Given Rules</b></font></html>");
-		String[] rulesStrings = { "1", "2", "3", "4", "5", "6", "7" };
+		String[] rulesStrings = { "-", "1", "2", "3", "4", "5" };
 		rulesList = new JComboBox<String>(rulesStrings);
 		rulesList.setSelectedIndex(0);
 		rulesList.addActionListener(this);
@@ -162,7 +162,7 @@ public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
 		p_rules.add(rulesList);
 		p_buttons.add(startBtn);
 		p_buttons.add(stopBtn);
-		for(JPanel p : panels){
+		for (JPanel p : panels) {
 			mainPanel.add(p);
 		}
 		return mainPanel;
@@ -170,75 +170,101 @@ public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		log.info("We reeived on ActionEvent " + arg0);
+
 		if (arg0.getActionCommand().equalsIgnoreCase("Generate")) {
+			log.info("action:generate" + arg0);
 			BGRule rule = new BGRule(forkNum, angle, initialLength);
 			BGGeneration test = new BGGeneration(rule, generationNum);
 			System.out.println("Generate: " + "\nRule: " + "BGRule(fork: " + forkNum + ", angle: " + angle
 					+ ", length: " + initialLength + ")" + "\nGenerations: " + generationNum);
-			canvas.setTree(test.tree);
-			canvas.repaint();
+			Thread canvasThread = new Thread(() -> {
+				canvas.setTree(new ArrayList<BGStem>());
+				int sleepTime = 300;
+				for (BGStem stem : test.tree) {
+					// System.out.println(stem.toString());
+					canvas.draw(stem);
+					try {
+						while (sleepTime > 4) {
+							sleepTime -= 3;
+						}
+						Thread.sleep(sleepTime);
+
+						System.out.println("canvas: I got sleep!");
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			canvasThread.start();
+
 		} else if (arg0.getActionCommand().equalsIgnoreCase("Clear")) {
-			// System.out.println("Clear was pressed");
+			log.info("action:clear" + arg0);
 			canvas.setTree(null);
 			canvas.repaint();
 		} else {
 			JComboBox<String> source = (JComboBox<String>) arg0.getSource();
-			if (source == forkNumList)
-				System.out.println("fork changed: " + arg0.getActionCommand());
+			if (source == forkNumList) {
+				log.info("action:fork" + arg0);
+				System.out.println("fork: " + forkNum);
 				forkNum = Integer.parseInt((String) source.getSelectedItem());
-			if (source == rulesList){
-				switch((String)source.getSelectedItem()){
-				case "1": {
-					
-					BGRule rule1 = new BGRule(7,57,300);
-					//generationNum = 5;
-					forkNumList.setSelectedItem(rule1.getForkNum()-1);
-					generationNumList.setSelectedItem(4);
-					angleSlider.setValue((int)rule1.getAngle());
-					lengthSlider.setValue((int)rule1.getInitialStemLength());
-					
-				}
-				case "2":{
-					BGRule rule2 = new BGRule(7,60,350);
-					//generationNum = 5;
-					forkNumList.setSelectedItem(rule2.getForkNum()-1);
+			}
+			if (source == rulesList) {
+				if (((String) source.getSelectedItem()).equalsIgnoreCase("1")) {
+					log.info("action:rule1" + arg0);
+					BGRule rule1 = new BGRule(7, 53, 305);
+					// generationNum = 5;
+					forkNumList.setSelectedIndex(rule1.getForkNum() - 2);
 					generationNumList.setSelectedIndex(4);
-					angleSlider.setValue((int)rule2.getAngle());
-					lengthSlider.setValue((int)rule2.getInitialStemLength());
-					
+					angleSlider.setValue((int) rule1.getAngle());
+					lengthSlider.setValue((int) rule1.getInitialStemLength());
+
 				}
-				case "3":{
-					BGRule rule3 = new BGRule(5,60,350);
-					//generationNum = 7;
-					forkNumList.setSelectedItem(rule3.getForkNum()-1);
+				if (((String) source.getSelectedItem()).equalsIgnoreCase("2")) {
+					log.info("action:rule2" + arg0);
+					BGRule rule2 = new BGRule(7, 60, 350);
+					// generationNum = 5;
+					forkNumList.setSelectedIndex(rule2.getForkNum() - 2);
+					generationNumList.setSelectedIndex(4);
+					angleSlider.setValue((int) rule2.getAngle());
+					lengthSlider.setValue((int) rule2.getInitialStemLength());
+
+				}
+				if (((String) source.getSelectedItem()).equalsIgnoreCase("3")) {
+					log.info("action:rule3" + arg0);
+					BGRule rule3 = new BGRule(5, 60, 350);
+					// generationNum = 7;
+					forkNumList.setSelectedIndex(rule3.getForkNum() - 2);
 					generationNumList.setSelectedIndex(6);
-					angleSlider.setValue((int)rule3.getAngle());
-					lengthSlider.setValue((int)rule3.getInitialStemLength());
+					angleSlider.setValue((int) rule3.getAngle());
+					lengthSlider.setValue((int) rule3.getInitialStemLength());
 				}
-				case "4":{
-					BGRule rule4 = new BGRule(7,30,350);
-					//generationNum = 5;
-					
-					forkNumList.setSelectedItem(rule4.getForkNum()-1);
-					generationNumList.setSelectedItem(4);
-					angleSlider.setValue((int)rule4.getAngle());
-					lengthSlider.setValue((int)rule4.getInitialStemLength());
+				if (((String) source.getSelectedItem()).equalsIgnoreCase("4")) {
+					log.info("action:rule4" + arg0);
+					BGRule rule4 = new BGRule(7, 30, 350);
+					// generationNum = 5;
+					forkNumList.setSelectedIndex(rule4.getForkNum() - 2);
+					generationNumList.setSelectedIndex(4);
+					angleSlider.setValue((int) rule4.getAngle());
+					lengthSlider.setValue((int) rule4.getInitialStemLength());
 				}
-				case "5":{
-					//TODO undefined
-					BGRule rule5 = new BGRule(7,57,300);
-					//generationNum = 5;
-					forkNumList.setSelectedItem(rule5.getForkNum()-1);
-					generationNumList.setSelectedItem(4);
-					angleSlider.setValue((int)rule5.getAngle());
-					lengthSlider.setValue((int)rule5.getInitialStemLength());
-				}
+				if (((String) source.getSelectedItem()).equalsIgnoreCase("5")) {
+					// TODO undefined
+					log.info("action:rule5" + arg0);
+					BGRule rule5 = new BGRule(7, 57, 300);
+					// generationNum = 5;
+					forkNumList.setSelectedIndex(rule5.getForkNum() - 2);
+					generationNumList.setSelectedIndex(4);
+					angleSlider.setValue((int) rule5.getAngle());
+					lengthSlider.setValue((int) rule5.getInitialStemLength());
 				}
 			}
-			if (source == generationNumList)
+
+			if (source == generationNumList) {
+				log.info("action:generations" + arg0);
 				generationNum = Integer.parseInt((String) source.getSelectedItem());
-			// System.out.println("generationNum: " +generationNum);
+				System.out.println("generationNum: " + generationNum);
+			}
 		}
 	}
 
@@ -253,18 +279,8 @@ public class ShiqiAPP implements ActionListener, ChangeListener, ItemListener {
 		}
 	}
 
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		
-		if(e.getStateChange() == ItemEvent.SELECTED){
-			String item = (String) e.getItem();
-		}
-	}
 	public static void main(String[] args) {
 		new ShiqiAPP();
 	}
-
-	
-	
 
 }
